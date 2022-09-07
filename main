@@ -1,0 +1,39 @@
+import sys
+
+def splitOperation(words):
+        newword=''
+        space=" "
+        for index, w in enumerate(words):
+                if str(w).isupper():
+                        w=str(w).lower()
+                        if index==0:
+                                space=""
+                        newword= newword + space + w
+                else:
+                        space=" "
+                        newword=newword +w
+        if typeOf=='M':
+                        newword=newword.replace("()","")
+        return newword
+
+def concatOperation(words):
+        newword=''
+        wordarray = str(words).split(" ")
+        for index, word in enumerate(wordarray):
+                if index==0 and typeOf!='C':
+                        newword= newword+ word
+                else:
+                        newword= newword+ str(word).capitalize()
+        if typeOf=='M':
+                newword=newword+"()"
+        return newword
+
+for x in sys.stdin.read().splitlines():
+        oper, typeOf, actualWord = str(x).split(";") 
+        newword=''
+
+        if oper=='S':
+                 newword=splitOperation(actualWord)
+        else:
+                 newword=concatOperation(actualWord)
+        print(newword)
